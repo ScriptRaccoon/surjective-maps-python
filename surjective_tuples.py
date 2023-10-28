@@ -114,6 +114,8 @@ if __name__ == "__main__":
     time2 = end2 - start2
     print(time2)
 
+    assert res1 == set(res2)
+
     start3 = perf_counter()
     res3 = surjective_tuples_stupid(m, n)
     end3 = perf_counter()

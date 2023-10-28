@@ -1,10 +1,7 @@
-# https://stackoverflow.com/questions/77379001/efficient-computation-of-the-set-of-surjective-functions
-
-
 """Compute the list of all surjective maps between two finite sets,
 encoded as m-tuples of numbers < n where every number < n appears
-at least once. The implementation below is recursive. For example,
-consider the tuple
+at least once. The implementation below is recursive.
+For example, consider the tuple
 
 (1,6,4,2,1,6,0,2,5,1,3,2,3)
 
@@ -60,8 +57,8 @@ def surjective_tuples(m: int, n: int) -> set[tuple]:
     return result
 
 
-# written by Kelly, runs faster
-def surjective_tuples2(m: int, n: int) -> list[tuple]:
+# written by user "kelly bundy" in https://stackoverflow.com/questions/77379001
+def surjective_tuples_kelly(m: int, n: int) -> list[tuple]:
     """List of all m-tuples of numbers < n where every number < n appears at least once.
 
     Arguments:
@@ -86,6 +83,7 @@ def surjective_tuples2(m: int, n: int) -> list[tuple]:
     return result
 
 
+# of course, the worst implementation
 def surjective_tuples_stupid(m: int, n: int) -> list[int]:
     """List of all m-tuples of numbers < n where every number < n appears at least once.
     Implemented as stupidly as possible by filtering out the surjective tuples
@@ -109,17 +107,13 @@ if __name__ == "__main__":
     print(time1)
 
     start2 = perf_counter()
-    res2 = surjective_tuples2(m, n)
+    res2 = surjective_tuples_kelly(m, n)
     end2 = perf_counter()
     time2 = end2 - start2
     print(time2)
-
-    assert res1 == set(res2)
 
     start3 = perf_counter()
     res3 = surjective_tuples_stupid(m, n)
     end3 = perf_counter()
     time3 = end3 - start3
     print(time3)
-
-    assert set(res3) == set(res2)

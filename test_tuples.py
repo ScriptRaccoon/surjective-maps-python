@@ -1,5 +1,7 @@
 """Tests for surjective_tuples.py"""
 
+# pylint: disable=missing-function-docstring
+
 from surjective_tuples import (
     surjective_tuples,
     surjective_tuples_kelly,

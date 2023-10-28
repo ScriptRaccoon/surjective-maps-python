@@ -28,7 +28,8 @@ def surject2(m: int, n: int) -> int:
     return sum((-1) ** i * comb(n, i) * (n - i) ** m for i in range(n))
 
 
-if __name__ == "__main__":
+def main() -> None:
+    """compare performance"""
     values = [(10, 5), (10, 2), (20, 1), (20, 10), (20, 15), (20, 20)]
     for m, n in values:
         print("recursive implemention")
@@ -45,3 +46,7 @@ if __name__ == "__main__":
         print(f"{m},{n}: {time2}")
         print("ratio=", time1 / time2)
         print()
+
+
+if __name__ == "__main__":
+    main()

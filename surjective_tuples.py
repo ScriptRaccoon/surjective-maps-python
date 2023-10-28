@@ -84,7 +84,7 @@ def surjective_tuples_kelly(m: int, n: int) -> list[tuple]:
 
 
 # of course, the worst implementation
-def surjective_tuples_stupid(m: int, n: int) -> list[int]:
+def surjective_tuples_stupid(m: int, n: int) -> list[tuple]:
     """List of all m-tuples of numbers < n where every number < n appears at least once.
     Implemented as stupidly as possible by filtering out the surjective tuples
     within all tuples.
@@ -93,27 +93,32 @@ def surjective_tuples_stupid(m: int, n: int) -> list[int]:
         m: length of the tuple
         n: number of distinct values
     """
-    all_tuples = list(itertools.product(*(range(n) for _ in range(m))))
-    surjective_tuples = filter(lambda t: all(i in t for i in range(n)), all_tuples)
-    return list(surjective_tuples)
+    all_tuples: list[tuple] = list(itertools.product(*(range(n) for _ in range(m))))
+    surjectives = filter(lambda t: all(i in t for i in range(n)), all_tuples)
+    return list(surjectives)
 
 
-if __name__ == "__main__":
+def main():
+    """compare performance"""
     m, n = 9, 6
     start1 = perf_counter()
-    res1 = surjective_tuples(m, n)
+    surjective_tuples(m, n)
     end1 = perf_counter()
     time1 = end1 - start1
     print(time1)
 
     start2 = perf_counter()
-    res2 = surjective_tuples_kelly(m, n)
+    surjective_tuples_kelly(m, n)
     end2 = perf_counter()
     time2 = end2 - start2
     print(time2)
 
     start3 = perf_counter()
-    res3 = surjective_tuples_stupid(m, n)
+    print(surjective_tuples_stupid(m, n))
     end3 = perf_counter()
     time3 = end3 - start3
     print(time3)
+
+
+if __name__ == "__main__":
+    main()

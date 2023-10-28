@@ -93,8 +93,8 @@ def surjective_tuples_stupid(m: int, n: int) -> list[tuple]:
         m: length of the tuple
         n: number of distinct values
     """
-    all_tuples: list[tuple] = list(itertools.product(*(range(n) for _ in range(m))))
-    surjectives = filter(lambda t: all(i in t for i in range(n)), all_tuples)
+    all_tuples: list[tuple] = itertools.product(range(n), repeat=m)
+    surjectives = filter(set(range(n)).issubset, all_tuples)
     return list(surjectives)
 
 

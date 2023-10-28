@@ -28,18 +28,6 @@ def surject2(m: int, n: int) -> int:
     return sum((-1) ** i * comb(n, i) * (n - i) ** m for i in range(n))
 
 
-def measure_fun(fun, msg="") -> None:
-    """measures performance of a function"""
-    print(msg)
-    values = [(10, 5), (10, 2), (20, 10), (20, 20), (20, 1)]
-    for m, n in values:
-        start = perf_counter()
-        fun(m, n)
-        end = perf_counter()
-        time = end - start
-        print(f"{m},{n}: {time}")
-
-
 if __name__ == "__main__":
     values = [(10, 5), (10, 2), (20, 1), (20, 10), (20, 15), (20, 20)]
     for m, n in values:

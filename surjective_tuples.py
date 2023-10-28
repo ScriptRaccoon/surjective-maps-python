@@ -86,8 +86,22 @@ def surjective_tuples2(m: int, n: int) -> list[tuple]:
     return result
 
 
+def surjective_tuples_stupid(m: int, n: int) -> list[int]:
+    """List of all m-tuples of numbers < n where every number < n appears at least once.
+    Implemented as stupidly as possible by filtering out the surjective tuples
+    within all tuples.
+
+    Arguments:
+        m: length of the tuple
+        n: number of distinct values
+    """
+    all_tuples = list(itertools.product(*(range(n) for _ in range(m))))
+    surjective_tuples = filter(lambda t: all(i in t for i in range(n)), all_tuples)
+    return list(surjective_tuples)
+
+
 if __name__ == "__main__":
-    m, n = 9, 5
+    m, n = 9, 6
     start1 = perf_counter()
     res1 = surjective_tuples(m, n)
     end1 = perf_counter()
@@ -100,6 +114,10 @@ if __name__ == "__main__":
     time2 = end2 - start2
     print(time2)
 
-    print("ratio:", time1 / time2)
+    start3 = perf_counter()
+    res3 = surjective_tuples_stupid(m, n)
+    end3 = perf_counter()
+    time3 = end3 - start3
+    print(time3)
 
-    assert set(res2) == res1
+    assert set(res3) == set(res2)

@@ -40,8 +40,7 @@ def measure_fun(fun, msg="") -> None:
         print(f"{m},{n}: {time}")
 
 
-def main() -> None:
-    """measure performance of the two implementations"""
+if __name__ == "__main__":
     values = [(10, 5), (10, 2), (20, 1), (20, 10), (20, 15), (20, 20)]
     for m, n in values:
         print("recursive implemention")
@@ -58,7 +57,3 @@ def main() -> None:
         print(f"{m},{n}: {time2}")
         print("ratio=", time1 / time2)
         print()
-
-
-if __name__ == "__main__":
-    main()
